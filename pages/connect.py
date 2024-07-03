@@ -154,5 +154,5 @@ col1, col2 = st.columns([1, 2])
 col1.dataframe(docas)
 col2.dataframe(oferecimento)
 
-st.write(df)
+st.write(df, hide_index=True)
 
