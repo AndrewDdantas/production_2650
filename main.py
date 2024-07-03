@@ -1,6 +1,6 @@
 import streamlit as st
 from time import sleep
-st.title("Bem vindo ao app de recolhimentos do Magazine Luiza CD 2650.")
+st.title("Bem vindo do Magazine Luiza CD 2650.")
 
 with st.form('LoginForm'):
     User = st.number_input('CD',step=1)
