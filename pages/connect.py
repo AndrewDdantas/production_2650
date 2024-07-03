@@ -140,12 +140,14 @@ col11.write( f'Peças Conferidas: {fmt_num(df['CONFERIDO'].sum(), 'NORMAL')}')
 col11.write( f'Cubagem Conferida: {fmt_num(df['CUB_CONFERIDA'].sum(),'CUBAGEM', 2)}')
 col12.write( f'{fmt_num(df['CONFERIDO'].sum()/df['PECAS'].sum(), 'PORCENTAGEM', 2)}')
 col12.write( f'{fmt_num(df['CUB_CONFERIDA'].sum()/df['CUBAGEM'].sum(), 'PORCENTAGEM', 2)}')
-
-docas = df.loc[df['STATUS_LOTE'] == 'EM PRODUCAO']
-docas['DOCA'] = docas['DOCA'].apply(lambda x: str(x)[:1] if len(str(x)) > 3 else str(x)[:2])
-docas['PEN_SEP'] = docas['CUBAGEM'] - df['CUB_SEPARADA']
-docas['PEN_CONF'] = docas['CUBAGEM'] - df['CUB_CONFERIDA']
-docas = docas.groupby('DOCA').agg({'CUBAGEM': 'sum', 'PEN_SEP': 'sum', 'PEN_CONF': 'sum'})
+try:
+    docas = df.loc[df['STATUS_LOTE'] == 'EM PRODUCAO']
+    docas['DOCA'] = docas['DOCA'].apply(lambda x: str(x)[:1] if len(str(x)) > 3 else str(x)[:2])
+    docas['PEN_SEP'] = docas['CUBAGEM'] - df['CUB_SEPARADA']
+    docas['PEN_CONF'] = docas['CUBAGEM'] - df['CUB_CONFERIDA']
+    docas = docas.groupby('DOCA').agg({'CUBAGEM': 'sum', 'PEN_SEP': 'sum', 'PEN_CONF': 'sum'})
+except:
+    docas = pd.DataFrame()
 
 oferecimento = df.groupby(['DATA', 'HORA']).agg({'ID_CARGA': 'nunique', 'PECAS': 'sum', 'SEPARADO': 'sum', 'CONFERIDO': 'sum', 'CUBAGEM': 'sum', 'CUB_SEPARADA': 'sum', 'CUB_CONFERIDA': 'sum'})
 col1, col2 = st.columns([1, 2])
