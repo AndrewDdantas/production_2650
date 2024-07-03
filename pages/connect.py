@@ -52,7 +52,7 @@ credentials = ServiceAccountCredentials.from_json_keyfile_dict(
     json, scope)
 client = gs.authorize(credentials)
 
-base = client.open_by_key(st.secrets['bases']) 
+base = client.open_by_key(st.secrets['bases']).worksheet('GRADE') 
 db_data = base.get_all_values()
 df = pd.DataFrame(db_data[1:], columns=db_data[0])
 
