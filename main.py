@@ -1,7 +1,5 @@
 import streamlit as st
 from time import sleep
-import services.connect as C
-
 st.title("Bem vindo ao app de recolhimentos do Magazine Luiza CD 2650.")
 
 with st.form('LoginForm'):
