@@ -86,8 +86,7 @@ else:
 
 if status != '':
     df = df.loc[df['STATUS_LOTE'] == status]
-else:
-    df = df.loc[df['STATUS_LOTE'] != 'FATURADO']
+
 
 
 
