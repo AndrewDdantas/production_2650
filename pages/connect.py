@@ -64,7 +64,7 @@ df['CUBAGEM'] = df['CUBAGEM'].str.replace(',', '.').astype(float)
 df['CUB_SEPARADA'] = df['CUB_SEPARADA'].str.replace(',', '.').astype(float)
 df['CUB_CONFERIDA'] = df['CUB_CONFERIDA'].str.replace(',', '.').astype(float)
 df[['DATA', 'HORA']] = df['DATA_PROGRAMACAO'].str.split(' ', expand=True)
-df['DATA_PROGRAMACAO'] = pd.to_datetime(df['DATA_PROGRAMACAO'], format='%d/%m/%Y %H:%M')
+df['DATA_PROGRAMACAO'] = pd.to_datetime(df['DATA_PROGRAMACAO'], format='%Y-%m-%d %H:%M')
 
 df = df.sort_values('DATA_PROGRAMACAO')
 
